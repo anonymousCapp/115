@@ -10,7 +10,7 @@
   </style>
 </head>
 <body>
-  <h1>Ogni giorno un nuovo motivo</h1>
+  <h1>115 cose che amo di te</h1>
   <div id="message">Caricamento…</div>
 
   <script>
@@ -41,9 +41,9 @@
     // 4) Mostra il messaggio giusto o un messaggio di attesa
     const msgEl = document.getElementById('message');
     if (daysPassed < 0) {
-      msgEl.textContent = "Torna il giorno del tuo compleanno 🎂";
+      msgEl.textContent = "Che ci fai qui?";
     } else if (daysPassed >= messages.length) {
-      msgEl.textContent = "Siamo arrivati al nostro anniversario! ❤️" + daysPassed + " " + messages.length;
+      msgEl.textContent = "Fine";
     } else {
       msgEl.textContent = messages[daysPassed];
     }
