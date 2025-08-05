@@ -43,9 +43,9 @@
     if (daysPassed < 0) {
       msgEl.textContent = "Torna il giorno del tuo compleanno 🎂";
     } else if (daysPassed >= messages.length) {
-      msgEl.textContent = "Siamo arrivati al nostro anniversario! ❤️" + daysPassed;
+      msgEl.textContent = "Siamo arrivati al nostro anniversario! ❤️" + daysPassed + " " + messages.length;
     } else {
-      msgEl.textContent = messages[daysPassed];
+      msgEl.textContent = "Numero " + daysPassed + messages[daysPassed];
     }
   })();
   </script>
