@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>115 Cose Che Amo di Te</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; line-height: 1.6; }
+    #message { font-size: 1.4rem; margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Ogni giorno un nuovo motivo</h1>
+  <div id="message">Caricamento…</div>
+
+  <script>
+  (async function() {
+    // 1) Protezione via prompt JS
+    const pwd = prompt("Inserisci la password per accedere ai messaggi:");
+    if (pwd !== 'laTuaPasswordSegreta') {
+      document.getElementById('message').textContent = "Accesso negato 🔒";
+      return;
+    }
+
+    // 2) Carica il JSON dei messaggi
+    let messages;
+    try {
+      const res = await fetch('messages.json');
+      if (!res.ok) throw new Error(res.statusText);
+      messages = await res.json();
+    } catch (e) {
+      document.getElementById('message').textContent = "Errore nel caricamento";
+      return;
+    }
+
+    // 3) Calcola l'indice in base ai giorni passati dal 9 agosto 2025
+    const start = new Date('2025-08-09T00:00:00');
+    const now   = new Date();
+    const daysPassed = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+
+    // 4) Mostra il messaggio giusto o un messaggio di attesa
+    const msgEl = document.getElementById('message');
+    if (daysPassed < 0) {
+      msgEl.textContent = "Torna il giorno del tuo compleanno 🎂";
+    } else if (daysPassed >= messages.length) {
+      msgEl.textContent = "Siamo arrivati al nostro anniversario! ❤️";
+    } else {
+      msgEl.textContent = messages[daysPassed];
+    }
+  })();
+  </script>
+</body>
+</html>
